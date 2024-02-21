@@ -19,8 +19,11 @@ jobs:
         os: ['ubuntu-latest', 'ubuntu-18.04']
     steps:
     - uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
       with:
-        node-version: '>=20'
+        node-version: '20'
 
     - name: Set up Go
       uses: actions/setup-go@v4
@@ -44,8 +47,11 @@ jobs:
         os: ['ubuntu-latest', 'ubuntu-18.04']
     steps:
     - uses: actions/checkout@v4
+    
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
       with:
-        node-version: '>=20'
+        node-version: '20'
     
     - name: Build
       run: go build -v main.go
