@@ -48,9 +48,6 @@ jobs:
   build:
     needs: tests
     runs-on: ${{ matrix.os }}
-    container:
-      image: archlinux
-      options: --privileged
     strategy:
       matrix: 
         os: ['ubuntu-latest']
