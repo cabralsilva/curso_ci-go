@@ -26,11 +26,20 @@ jobs:
 
     - name: Executing remote ssh commands using password
       uses: appleboy/ssh-action@master
+      env:
+        DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        DATABASE_USER: ${{ secrets.DATABASE_USER }}
+        DATABASE_PWD: ${{ secrets.DATABASE_PWD }}
+        DATABASE_DBNAME: ${{ secrets.DATABASE_DBNAME }}
+        DATABASE_DBPORT: ${{ secrets.DATABASE_DBPORT }}
+        PORT: 8000
+
       with:
         host: ${{ secrets.SERVER_REMOTE_HOST }}
         username: ${{ secrets.SERVER_REMOTE_USER }}
         key: ${{ secrets.SERVER_REMOTE_SSH_PRIVATE_KEY }}
         port: 22
+        envs: DATABASE_URL,DATABASE_USER,DATABASE_PWD,DATABASE_DBNAME,DATABASE_DBPORT,PORT
         script: | 
           export DATABASE_URL=${{ secrets.DATABASE_URL }}
           export DATABASE_USER=${{ secrets.DATABASE_USER }}
