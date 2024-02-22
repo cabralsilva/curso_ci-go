@@ -22,7 +22,7 @@ jobs:
         REMOTE_HOST: ${{ secrets.SERVER_REMOTE_HOST }}
         REMOTE_USER: ${{ secrets.SERVER_REMOTE_USER }}
         TARGET: /home/${{ secrets.SERVER_REMOTE_USER }}
-        EXCLUE: postgres-data
+        EXCLUDE: postgres-data
 
     - name: Executing remote ssh commands using password
       uses: appleboy/ssh-action@master
