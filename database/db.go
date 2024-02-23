@@ -23,8 +23,3 @@ func ConectaComBancoDeDados() {
 
 	DB.AutoMigrate(&models.Aluno{})
 }
-
-
-// host=root.c5kq0ywq2g7o.us-east-1.rds.amazonaws.com user=postgres password=123456789 dbname=root port=5432 sslmode=disable
-
-// rate(http_server_requests_seconds_sum{application="sg-order", job="order", uri=~"^($uri)$"}[1m]) / rate(http_server_requests_seconds_count{application="sg-order", job="order", uri=~"^($uri)$"}[1m])
