@@ -16,3 +16,26 @@ jobs:
 
     - name: Obtendo arquivo da tarefa
       run: aws ecs describe-task-definition --task-definition task-curso-cicd --query taskDefinition > task-definition.json
+
+    - name: Colocando o id da imagem na definição da tarefa do ECS
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: task-definition.json
+        container-name: api-go
+        image: cabralconsultoria/curso_ci-go:main
+        environment-variables: | 
+          DATABASE_URL=${{ secrets.DATABASE_URL }}
+          DATABASE_USER=${{ secrets.DATABASE_USER }}
+          DATABASE_PWD=${{ secrets.DATABASE_PWD }}
+          DATABASE_DBNAME=${{ secrets.DATABASE_DBNAME }}
+          DATABASE_DBPORT=${{ secrets.DATABASE_DBPORT }}
+          PORT=8000
+
+    - name: Deploy Amazon ECS task definition
+      uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+      with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: service-curso-cicd 
+          cluster: curso-cicd
+          wait-for-service-stability: true
