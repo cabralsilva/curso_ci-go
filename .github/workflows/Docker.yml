@@ -28,7 +28,7 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: cabralconsultoria/curso_ci-go:${{ github.ref_name }}
+        tags: cabralconsultoria/curso_ci-go:${{ github.run_number }}
                 
             
               
