@@ -23,7 +23,7 @@ jobs:
       with:
         task-definition: task-definition.json
         container-name: api-go
-        image: cabralconsultoria/curso_ci-go:main
+        image: cabralconsultoria/curso_ci-go:${{ github.run_number }}
         environment-variables: | 
           DATABASE_URL=${{ secrets.DATABASE_URL }}
           DATABASE_USER=${{ secrets.DATABASE_USER }}
